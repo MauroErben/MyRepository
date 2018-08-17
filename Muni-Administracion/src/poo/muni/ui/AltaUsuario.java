@@ -84,6 +84,11 @@ public class AltaUsuario extends javax.swing.JFrame {
         btnConfirmar.setToolTipText("Comfirmar Datos");
         btnConfirmar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnConfirmar.setVerifyInputWhenFocusTarget(false);
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
 
         btnCancelar1.setBackground(new java.awt.Color(0, 153, 204));
         btnCancelar1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -196,6 +201,10 @@ public class AltaUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        
+    }//GEN-LAST:event_btnConfirmarActionPerformed
 
     /**
      * @param args the command line arguments
