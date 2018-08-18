@@ -100,6 +100,11 @@ public class AltaUsuario extends javax.swing.JFrame {
         btnCancelar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poo/imagenes/cancel_icon.png"))); // NOI18N
         btnCancelar1.setText("Cancelar");
         btnCancelar1.setToolTipText("Cancelar Datos");
+        btnCancelar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelar1ActionPerformed(evt);
+            }
+        });
 
         txtContraseña.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -255,6 +260,15 @@ public class AltaUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtNombreUsuario.setText("");
+        txtEmail.setText("");
+        txtContraseña.setText("");
+        txtConfirmarContraseña.setText("");
+    }//GEN-LAST:event_btnCancelar1ActionPerformed
 
     /**
      * @param args the command line arguments
