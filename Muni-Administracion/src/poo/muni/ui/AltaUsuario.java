@@ -6,6 +6,8 @@
 package poo.muni.ui;
 
 import javax.swing.JOptionPane;
+import poo.muni.controller.gestorEmpleo;
+import poo.muni.dao.usuarioDao;
 
 /**
  *
@@ -13,11 +15,16 @@ import javax.swing.JOptionPane;
  */
 public class AltaUsuario extends javax.swing.JFrame {
 
+    private final gestorEmpleo gestor;
+    private usuarioDao user;
+
     /**
      * Creates new form AltaUsuario
      */
-    public AltaUsuario() {
+    public AltaUsuario(gestorEmpleo gestor) {
+        this.gestor = gestor;
         initComponents();
+
     }
 
     /**
@@ -234,12 +241,18 @@ public class AltaUsuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
 
-        String nombre = txtNombre.getText();
-        String apellido = txtApellido.getText();
-        String nombreUsuario = txtNombreUsuario.getText();
-        String email = txtEmail.getText();
+        guardarAltaUsuario();
+
+    }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    public void guardarAltaUsuario() {
+        String nombre = txtNombre.getText().trim();
+        String apellido = txtApellido.getText().trim();
+        String nombreUsuario = txtNombreUsuario.getText().trim();
+        String email = txtEmail.getText().trim();
 
         char[] contraseña = txtContraseña.getPassword();
         char[] confirmarContraseña = txtConfirmarContraseña.getPassword();
@@ -248,62 +261,85 @@ public class AltaUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No deje campos vacíos.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
-        if(contraseña.length < 5){
+
+        if (!isValidEmailAddress(email)) {
+            JOptionPane.showMessageDialog(null, "El email no es valido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (contraseña.length < 5) {
             JOptionPane.showMessageDialog(null, "La contraseña debe tener un minimo de 5 caracteres.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        if (String.valueOf(contraseña).equals(String.valueOf(confirmarContraseña))) {
-            JOptionPane.showMessageDialog(null, "Registrado correctamente!", "Información", JOptionPane.INFORMATION_MESSAGE);
-        } else {
+        if (!String.valueOf(contraseña).equals(String.valueOf(confirmarContraseña))) {
             JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-    }//GEN-LAST:event_btnConfirmarActionPerformed
+
+        if (!gestor.isUsuarioExistente(nombreUsuario)) {
+            JOptionPane.showMessageDialog(null, "El nombre de usuario ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if(nombreUsuario.contains(" ")) {
+            JOptionPane.showMessageDialog(null, "No use espacios en el nombre de usuario.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (gestor.guardarUsuario(nombre, apellido, email, contraseña, nombreUsuario)) {
+            JOptionPane.showMessageDialog(null, "Te has registrado correctamente, Usuario: " + nombreUsuario, "Información", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error al registrarte", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
 
     private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
-        txtNombre.setText("");
-        txtApellido.setText("");
-        txtNombreUsuario.setText("");
-        txtEmail.setText("");
-        txtContraseña.setText("");
-        txtConfirmarContraseña.setText("");
+        dispose();
     }//GEN-LAST:event_btnCancelar1ActionPerformed
+
+    public boolean isValidEmailAddress(String email) {
+        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
+    }
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AltaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AltaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AltaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AltaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AltaUsuario().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(AltaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(AltaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(AltaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(AltaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new AltaUsuario(this).setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar1;
@@ -325,4 +361,5 @@ public class AltaUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNombreUsuario;
     // End of variables declaration//GEN-END:variables
+
 }
