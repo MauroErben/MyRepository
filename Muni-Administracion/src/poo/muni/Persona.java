@@ -5,10 +5,13 @@
  */
 package poo.muni;
 
+import javax.persistence.MappedSuperclass;
+
 /**
  *
  * @author oficina2
  */
+@MappedSuperclass
 public abstract class Persona {
     private String nombre;
     private int cuil_cuit;
@@ -16,9 +19,9 @@ public abstract class Persona {
     private int telefonoPrincipal;
     private int telefonoAltarnativo;
     private String email;
-    
-    public Persona(){
-        
+
+    public Persona() {
+
     }
 
     public Persona(String nombre, int cuil_cuit, String domicilo, int telefonoPrincipal, int telefonoAltarnativo, String email) {
@@ -34,37 +37,46 @@ public abstract class Persona {
         return nombre;
     }
 
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
 
     public int getCuil_cuit() {
         return cuil_cuit;
     }
 
+
     public void setCuil_cuit(int cuil_cuit) {
         this.cuil_cuit = cuil_cuit;
     }
+
 
     public String getDomicilo() {
         return domicilo;
     }
 
+
     public void setDomicilo(String domicilo) {
         this.domicilo = domicilo;
     }
+
 
     public int getTelefonoPrincipal() {
         return telefonoPrincipal;
     }
 
+
     public void setTelefonoPrincipal(int telefonoPrincipal) {
         this.telefonoPrincipal = telefonoPrincipal;
     }
 
+
     public int getTelefonoAltarnativo() {
         return telefonoAltarnativo;
     }
+
 
     public void setTelefonoAltarnativo(int telefonoAltarnativo) {
         this.telefonoAltarnativo = telefonoAltarnativo;

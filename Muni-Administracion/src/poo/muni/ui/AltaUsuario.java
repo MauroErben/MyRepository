@@ -24,6 +24,7 @@ public class AltaUsuario extends javax.swing.JFrame {
     public AltaUsuario(gestorEmpleo gestor) {
         this.gestor = gestor;
         initComponents();
+        this.setLocationRelativeTo(null);
 
     }
 
@@ -55,10 +56,11 @@ public class AltaUsuario extends javax.swing.JFrame {
         lblSubrayado = new javax.swing.JLabel();
         iconoOficinaEmpleo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("OficinaEmpleo");
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setResizable(false);
 
         panel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 204), 4), "Ingrese sus datos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
@@ -289,6 +291,7 @@ public class AltaUsuario extends javax.swing.JFrame {
 
         if (gestor.guardarUsuario(nombre, apellido, email, contraseña, nombreUsuario)) {
             JOptionPane.showMessageDialog(null, "Te has registrado correctamente, Usuario: " + nombreUsuario, "Información", JOptionPane.INFORMATION_MESSAGE);
+           
         } else {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error al registrarte", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -296,7 +299,7 @@ public class AltaUsuario extends javax.swing.JFrame {
     }
 
     private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
-        dispose();
+        new AltaUsuario(gestor).setVisible(false);
     }//GEN-LAST:event_btnCancelar1ActionPerformed
 
     public boolean isValidEmailAddress(String email) {

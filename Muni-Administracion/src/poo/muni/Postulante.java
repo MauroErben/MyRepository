@@ -5,23 +5,52 @@
  */
 package poo.muni;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
 /**
  *
  * @author oficina2
  */
-public class Postulante extends Persona{
+@Entity
+@Table(name = "postulante")
+public class Postulante extends Persona {
+    @Id
+    @GeneratedValue
+    @Column(name = "id_postulante")
+    private long id;
+    
     private NivelEducativo nivelEducativo;
+    
     private Perfil perfil;
+    @Column(name = "movilidad")
     private String movilidad;
+    @Column(name = "dispHoraria")
     private String dispHoraria;
+    @Column(name = "docAdicional")
     private String docAdicional;
     private Programa programa;
+    @Column(name = "dni")
     private int dni;
+    @Column(name = "sexo")
     private String sexo;
+    @Column(name = "edad")
     private int edad;
-    
-    public Postulante(){
-        
+    private Persona persona;
+    private Usuario usuario;
+    @Column(name = "apellido")
+    private String apellido;
+
+    public Postulante() {
+
     }
 
     public Postulante(NivelEducativo nivelEducativo, Perfil perfil, String movilidad, String dispHoraria, String docAdicional, Programa programa, int dni, String sexo, int edad, String nombre, int cuil_cuit, String domicilo, int telefonoPrincipal, int telefonoAltarnativo, String email) {
@@ -41,6 +70,8 @@ public class Postulante extends Persona{
         return nivelEducativo;
     }
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     public void setNivelEducativo(NivelEducativo nivelEducativo) {
         this.nivelEducativo = nivelEducativo;
     }
@@ -107,5 +138,40 @@ public class Postulante extends Persona{
 
     public void setEdad(int edad) {
         this.edad = edad;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+
+    @Id
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 }

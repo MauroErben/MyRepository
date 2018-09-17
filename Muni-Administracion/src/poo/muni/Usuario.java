@@ -6,6 +6,7 @@
 package poo.muni;
 
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,17 +22,17 @@ import javax.persistence.Table;
 public class Usuario {
     @Id
     @GeneratedValue
-    @JoinColumn(name = "id_usuarios")
+    @Column(name = "id_usuarios")
     private int id;
-    @JoinColumn(name = "nombreUsuario")
+    @Column(name = "nombreUsuario")
     private String nombreUsuario;
-    @JoinColumn(name = "contraseña")
+    @Column(name = "contraseña")
     private char[]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        contraseña;
-    @JoinColumn(name = "nombre")
+    @Column(name = "nombre")
     private String nombre;
-    @JoinColumn(name = "apellido")
+    @Column(name = "apellido")
     private String apellido;
-    @JoinColumn (name = "email")
+    @Column (name = "email")
     private String email;
 
     public Usuario() {

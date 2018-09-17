@@ -12,6 +12,7 @@ import org.hibernate.Transaction;
 import poo.muni.AltaUsuario;
 import org.hibernate.cfg.AnnotationConfiguration;
 import poo.muni.Usuario;
+import poo.muni.ui.LogInUsuario;
 /**
  *
  * @author oficina2
@@ -35,6 +36,7 @@ public class MuniAdministracion {
             throw new ExceptionInInitializerError(e); 
         }
          new gestorEmpleo(factory, conn).run();
+         //new LogInUsuario().setVisible(true);
 //        try{
 //            try{
 //                sessionFactory = HibernateUtil.getSessionFactory();
