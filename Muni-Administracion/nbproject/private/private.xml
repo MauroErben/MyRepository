@@ -3,7 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/oficina2/Documents/mauro/MyRepositorio/Muni-Administracion/src/poo/muni/ui/PantallaAgregarPostulante.java</file>
+            <file>file:/C:/Users/oficina2/Documents/mauro/MyRepositorio/Muni-Administracion/src/poo/muni/NivelEducativo.java</file>
+            <file>file:/C:/Users/oficina2/Documents/mauro/MyRepositorio/Muni-Administracion/src/poo/muni/controller/MuniAdministracion.java</file>
+            <file>file:/C:/Users/oficina2/Documents/mauro/MyRepositorio/Muni-Administracion/src/poo/muni/dao/postulanteDao.java</file>
+            <file>file:/C:/Users/oficina2/Documents/mauro/MyRepositorio/Muni-Administracion/src/poo/muni/Postulante.java</file>
+            <file>file:/C:/Users/oficina2/Documents/mauro/MyRepositorio/Muni-Administracion/src/poo/muni/dao/usuarioDao.java</file>
+            <file>file:/C:/Users/oficina2/Documents/mauro/MyRepositorio/Muni-Administracion/src/poo/muni/Persona.java</file>
         </group>
     </open-files>
 </project-private>

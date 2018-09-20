@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 import poo.muni.controller.gestorEmpleo;
+import poo.muni.Perfil;
 
 /**
  *
@@ -411,7 +412,7 @@ public class PantallaAgregarPostulante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        String sexo;
+        String sexo = "";
         String nombre = txtNombre.getText();
         String apellido = txtApellido.getText();
         String edad = txtEdad.getText();
@@ -425,6 +426,8 @@ public class PantallaAgregarPostulante extends javax.swing.JFrame {
         String telPrincipal = txtTelPrincipal.getText();
         String telAlternativo = txtTelAlt.getText();
         String docAdicional = txtDocAdicional.getText();
+       
+        ;
 
         if (radioBtnMasculino.isSelected()) {
             sexo = "Masculino";
@@ -441,7 +444,12 @@ public class PantallaAgregarPostulante extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El email no es valido.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        limpiarCajasDeTexto();
+        
+        if(gestor.guardarPostulante(null, movilidad, dispHoraria, docAdicional, null, dni, sexo, edad, nombre, cuil, domicilio, telPrincipal, telAlternativo, email)){
+            JOptionPane.showMessageDialog(null, "Has registrado un postulante!", "Información", JOptionPane.INFORMATION_MESSAGE);
+            limpiarCajasDeTexto();
+        }
+       
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnCancelarPostulanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarPostulanteActionPerformed

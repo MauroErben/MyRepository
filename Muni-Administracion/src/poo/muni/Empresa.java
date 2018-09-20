@@ -23,7 +23,7 @@ public class Empresa extends Persona{
     public Empresa() {
     }
 
-    public Empresa(Perfil perfil, String representanteLegal, String sede, int cantidadTrabajadores, String razonSocial, Date fechaDeContacto, String tipoDeContacto, String nombre, int cuil_cuit, String domicilo, int telefonoPrincipal, int telefonoAltarnativo, String email) {
+    public Empresa(Perfil perfil, String representanteLegal, String sede, int cantidadTrabajadores, String razonSocial, Date fechaDeContacto, String tipoDeContacto, String nombre, String cuil_cuit, String domicilo, String telefonoPrincipal, String telefonoAltarnativo, String email) {
         super(nombre, cuil_cuit, domicilo, telefonoPrincipal, telefonoAltarnativo, email);
         this.perfil = perfil;
         this.representanteLegal = representanteLegal;

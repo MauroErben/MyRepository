@@ -11,6 +11,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import poo.muni.AltaUsuario;
 import org.hibernate.cfg.AnnotationConfiguration;
+import poo.muni.NivelEducativo;
+import poo.muni.Persona;
+import poo.muni.Postulante;
 import poo.muni.Usuario;
 import poo.muni.ui.LogInUsuario;
 /**
@@ -28,7 +31,10 @@ public class MuniAdministracion {
         
         try{
             factory = new AnnotationConfiguration().configure().
-                    addAnnotatedClass(Usuario.class)
+                    addAnnotatedClass(Usuario.class).
+                    addAnnotatedClass(Postulante.class).
+                    addAnnotatedClass(Persona.class).
+                    addAnnotatedClass(NivelEducativo.class)
                     .buildSessionFactory();
                      getConnection();
         }catch(Throwable e){
