@@ -57,7 +57,7 @@ public class usuarioDao {
                     return false;
                 }
             }
-            connection.close();    
+            //connection.close();    
         } catch (Exception e) {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());

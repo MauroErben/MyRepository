@@ -25,14 +25,16 @@ public class gestorEmpleo {
 
     private usuarioDao usuarioDao;
     private postulanteDao postulanteDao;
+    private final gestorPostulante gestorPostulante;
 
     public gestorEmpleo(SessionFactory sessionFactory, Connection connection) {
         this.usuarioDao = new usuarioDao(sessionFactory, connection);
         this.postulanteDao = new postulanteDao(sessionFactory, connection);
+        this.gestorPostulante = new gestorPostulante(sessionFactory, connection);
     }
 
     public void run() {
-        new LogInUsuario(this).setVisible(true);
+        new LogInUsuario(this, gestorPostulante).setVisible(true);
 
     }
 
@@ -42,9 +44,8 @@ public class gestorEmpleo {
 
     }
 
-    
-    public boolean guardarPostulante(Perfil perfil, String movilidad, String dispHoraria, String docAdicional, Programa programa, String dni, String sexo, String edad, String nombre, String cuil_cuit, String domicilo, String telefonoPrincipal, String telefonoAltarnativo, String email){
-        Postulante postulante = new Postulante(perfil, movilidad, dispHoraria, docAdicional, programa, dni, sexo, edad, nombre, cuil_cuit, domicilo, telefonoPrincipal, telefonoAltarnativo, email);
+    public boolean guardarPostulante(NivelEducativo nivelEducativo, Perfil perfil, String movilidad, String dispHoraria, String docAdicional, Programa programa, String dni, String sexo, String edad, String nombre, String cuil_cuit, String domicilo, String telefonoPrincipal, String telefonoAltarnativo, String email){
+        Postulante postulante = new Postulante(nivelEducativo, perfil, movilidad, dispHoraria, docAdicional, programa, dni, sexo, edad, nombre, cuil_cuit, domicilo, telefonoPrincipal, telefonoAltarnativo, email);
         
         return postulanteDao.guardarPostulante(postulante);
     }

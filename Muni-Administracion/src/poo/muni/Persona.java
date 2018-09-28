@@ -28,7 +28,6 @@ public abstract class Persona implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id_personas")
     private long id;
-    
     @Column(name = "nombreUsuarios")
     private String nombreUsuario;
     @Column(name = "nombre")

@@ -5,14 +5,27 @@
  */
 package poo.muni;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author oficina2
  */
-public class Programa {
+
+@Entity
+@Table(name = "programa")
+public class Programa implements Serializable {
+    @Id
+    @Column(name = "id_programa")
+    private long id;
     private String nombre;
     private String descripcion;
-
+   
     public Programa() {
     }
 
@@ -35,6 +48,14 @@ public class Programa {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
     
     

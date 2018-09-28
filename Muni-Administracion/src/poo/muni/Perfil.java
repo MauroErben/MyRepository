@@ -5,11 +5,22 @@
  */
 package poo.muni;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author oficina2
  */
-public class Perfil {
+@Entity
+@Table(name = "perfil")
+public class Perfil implements Serializable {
+    @Id
+    @Column(name = "id_perfil")
+    private long id;
     private String nombre;
     private String descripcion;
     
@@ -35,6 +46,14 @@ public class Perfil {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
     
 }

@@ -7,6 +7,7 @@ package poo.muni.ui;
 
 import javax.swing.JOptionPane;
 import poo.muni.controller.gestorEmpleo;
+import poo.muni.controller.gestorPostulante;
 import poo.muni.dao.usuarioDao;
 
 /**
@@ -16,13 +17,15 @@ import poo.muni.dao.usuarioDao;
 public class AltaUsuario extends javax.swing.JFrame {
 
     private final gestorEmpleo gestor;
+    private final gestorPostulante gestorPostulante;
     private usuarioDao user;
 
     /**
      * Creates new form AltaUsuario
      */
-    public AltaUsuario(gestorEmpleo gestor) {
+    public AltaUsuario(gestorEmpleo gestor, gestorPostulante gesPostulante) {
         this.gestor = gestor;
+        this.gestorPostulante = gesPostulante;
         initComponents();
         this.setLocationRelativeTo(null);
 
@@ -291,7 +294,8 @@ public class AltaUsuario extends javax.swing.JFrame {
 
         if (gestor.guardarUsuario(nombre, apellido, email, contraseña, nombreUsuario)) {
             JOptionPane.showMessageDialog(null, "Te has registrado correctamente, Usuario: " + nombreUsuario, "Información", JOptionPane.INFORMATION_MESSAGE);
-           
+            dispose();
+            new LogInUsuario(gestor, gestorPostulante).setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error al registrarte", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -299,7 +303,7 @@ public class AltaUsuario extends javax.swing.JFrame {
     }
 
     private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
-        new AltaUsuario(gestor).setVisible(false);
+        new AltaUsuario(gestor, gestorPostulante).setVisible(false);
     }//GEN-LAST:event_btnCancelar1ActionPerformed
 
     public boolean isValidEmailAddress(String email) {

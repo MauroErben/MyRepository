@@ -19,12 +19,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "niveleducacion")
 public class NivelEducativo implements Serializable {
-    @GeneratedValue
+    @Id
     @Column(name = "id_nivel_educacion")
     private long id;
-    @Column(name = "nombre")
     private String nombre;
-    @Column(name = "descripcion")
+    
     private String descripcion;
 
     public NivelEducativo() {
@@ -50,8 +49,7 @@ public class NivelEducativo implements Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
-    @Id
+    
     public long getId() {
         return id;
     }

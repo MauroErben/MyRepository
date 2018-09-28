@@ -6,6 +6,7 @@
 package poo.muni.ui;
 
 import poo.muni.controller.gestorEmpleo;
+import poo.muni.controller.gestorPostulante;
 
 /**
  *
@@ -13,14 +14,14 @@ import poo.muni.controller.gestorEmpleo;
  */
 public class PantallaMenuPrincipal extends javax.swing.JFrame {
     private String nombreUsuario;
-    private gestorEmpleo gestor;
+    private gestorPostulante gestorPostulante;
     /**
      * Creates new form PantallaMenuPrincipal
      */
-    public PantallaMenuPrincipal(gestorEmpleo gestor, String nombreUsuario) {
+    public PantallaMenuPrincipal(gestorPostulante gestor, String nombreUsuario) {
         initComponents();
         this.nombreUsuario = nombreUsuario;
-        this.gestor = gestor;
+        this.gestorPostulante = gestor;
         lblTextUsuarioLogueado.setText(nombreUsuario);
         this.setLocationRelativeTo(null);
     }
@@ -124,7 +125,7 @@ public class PantallaMenuPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         dispose();
-        new PantallaAgregarPostulante(gestor, nombreUsuario).setVisible(true);
+        new PantallaAgregarPostulante(gestorPostulante, nombreUsuario).setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**

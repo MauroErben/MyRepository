@@ -8,6 +8,7 @@ package poo.muni.ui;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import poo.muni.controller.gestorEmpleo;
+import poo.muni.controller.gestorPostulante;
 import poo.muni.dao.usuarioDao;
 
 /**
@@ -16,12 +17,14 @@ import poo.muni.dao.usuarioDao;
  */
 public class LogInUsuario extends javax.swing.JFrame {
     gestorEmpleo gestorEmpleo;
+    gestorPostulante gestorPostulante;
     /**
      * Creates new form LogInUsuario
      */
-    public LogInUsuario(gestorEmpleo gestor) {
+    public LogInUsuario(gestorEmpleo gestorEmpleo, gestorPostulante gePostulante) {
         initComponents();
-        this.gestorEmpleo = gestor;
+        this.gestorEmpleo = gestorEmpleo;
+        this.gestorPostulante = gePostulante;
         this.setLocationRelativeTo(null);
     }
 
@@ -130,7 +133,7 @@ public class LogInUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_lblOlvideContraseñaMouseExited
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-        new AltaUsuario(gestorEmpleo).setVisible(true);
+        new AltaUsuario(gestorEmpleo, gestorPostulante).setVisible(true);
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     private void btnLoguearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoguearActionPerformed
@@ -138,7 +141,7 @@ public class LogInUsuario extends javax.swing.JFrame {
        String contraseña = txtContraseñaLogin.getText();
    
        if(gestorEmpleo.validarInicioSession(usuario, contraseña)){
-           new PantallaMenuPrincipal(gestorEmpleo,usuario).setVisible(true);
+           new PantallaMenuPrincipal(gestorPostulante, usuario).setVisible(true);
            dispose();
        }else{
             JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);
